@@ -1,0 +1,86 @@
+﻿<Window x:Class="FootballManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FootballManager"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1300" WindowState="Maximized" Background="Orange">
+    <Window.Resources>
+
+        
+        
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="Black">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    
+                    
+                </Style>
+            </StackPanel.Resources>
+
+            <ItemsControl ItemsSource="{Binding Labels}">
+
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                        <Label Content="{Binding Content}" Foreground="White" Background="{Binding StateRGB, Converter={local:StringRGBToBrushConverter}}">
+                            <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown" >
+                                        <i:InvokeCommandAction 
+                                            Command="{Binding 
+                                                DataContext.MouseLeftButtonDownCommand,
+                                                RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                                            CommandParameter="{Binding}"/>
+                                        
+                                </i:EventTrigger>
+                                    <i:EventTrigger EventName="MouseEnter" >
+                                        <i:InvokeCommandAction Command="{Binding DataContext.MouseEnterCommand,
+                                                RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                                                CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                
+                                    <i:EventTrigger EventName="MouseLeave" >
+                                        <i:InvokeCommandAction Command="{Binding DataContext.MouseLeaveCommand,
+                                            RelativeSource={RelativeSource AncestorType={x:Type Window}}}" 
+                                            CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            
+                        </Label>
+                        <Separator Visibility="{Binding IsSeparated, Converter={local:BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+
+
+            </ItemsControl>
+
+            
+        </StackPanel>
+
+        <Frame 
+            DataContext="{Binding ApplicationViewModel.CurrentPage,
+                                Source={x:Static local:ViewModelLocator.Instance},
+                                Converter={local:ApplicationPageValueConverter}}"
+            Content="{Binding}" 
+            Grid.Column="1" 
+            NavigationUIVisibility="Hidden"/>
+        
+    </Grid>
+
+</Window>
