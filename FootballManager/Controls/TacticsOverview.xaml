@@ -51,27 +51,21 @@
                         <ComboBox ItemsSource="{Binding DataContext.Squad.CurrentSquadPositions, RelativeSource= {RelativeSource AncestorType={x:Type UserControl}}}" 
                                   SelectedItem="{Binding TacticsPosition}"
                                   
-                                                                   
+                                  
                                   >
 
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="SelectionChanged">
                                     <i:InvokeCommandAction 
                                             Command="{Binding 
-                                                DataContext.Squad.AddToCurrentSquadCommand,
+                                                DataContext.Squad.ModifyCurrentSquadCommand,
                                                 RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
                                             CommandParameter="{Binding}"/>
 
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
 
-                                <ComboBox.ItemTemplate>
                                 
-                                <DataTemplate>
-                                    
-                                    <TextBlock Text="{Binding}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
                         </ComboBox>
                         
                         <TextBlock Grid.Column="1" Text="{Binding Name}"/>

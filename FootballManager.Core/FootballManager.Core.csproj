@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="PropertyChanged, Version=2.1.3.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.1.3\lib\netstandard1.0\PropertyChanged.dll</HintPath>
       <Private>False</Private>
